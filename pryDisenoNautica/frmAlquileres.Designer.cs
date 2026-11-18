@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             gboDatosCliente = new GroupBox();
+            btnLimpiar = new Button();
+            btnCalcular = new Button();
+            cboSocio = new CheckBox();
+            gboTurno = new GroupBox();
+            rbtMañana = new RadioButton();
+            rbtTarde = new RadioButton();
             lblHoras = new Label();
             tboHoras = new TextBox();
             cboEmbargacion = new ComboBox();
@@ -37,15 +43,23 @@
             tboNombre = new TextBox();
             lblDni = new Label();
             lblNombre = new Label();
-            gboTurno = new GroupBox();
-            rbtMañana = new RadioButton();
-            rbtTarde = new RadioButton();
+            gboImporte = new GroupBox();
+            lblTotal2 = new Label();
+            lblDescuento2 = new Label();
+            lblSubtotal2 = new Label();
+            lblTotal = new Label();
+            lblDescuento = new Label();
+            lblSubtotal = new Label();
             gboDatosCliente.SuspendLayout();
             gboTurno.SuspendLayout();
+            gboImporte.SuspendLayout();
             SuspendLayout();
             // 
             // gboDatosCliente
             // 
+            gboDatosCliente.Controls.Add(btnLimpiar);
+            gboDatosCliente.Controls.Add(btnCalcular);
+            gboDatosCliente.Controls.Add(cboSocio);
             gboDatosCliente.Controls.Add(gboTurno);
             gboDatosCliente.Controls.Add(lblHoras);
             gboDatosCliente.Controls.Add(tboHoras);
@@ -61,6 +75,70 @@
             gboDatosCliente.TabIndex = 0;
             gboDatosCliente.TabStop = false;
             gboDatosCliente.Text = "Datos cliente";
+            // 
+            // btnLimpiar
+            // 
+            btnLimpiar.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLimpiar.Location = new Point(183, 276);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(109, 42);
+            btnLimpiar.TabIndex = 13;
+            btnLimpiar.Text = "LIMPIAR";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // btnCalcular
+            // 
+            btnCalcular.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCalcular.Location = new Point(40, 276);
+            btnCalcular.Name = "btnCalcular";
+            btnCalcular.Size = new Size(109, 42);
+            btnCalcular.TabIndex = 12;
+            btnCalcular.Text = "CALCULAR";
+            btnCalcular.UseVisualStyleBackColor = true;
+            btnCalcular.Click += btnCalcular_Click;
+            // 
+            // cboSocio
+            // 
+            cboSocio.AutoSize = true;
+            cboSocio.Location = new Point(217, 217);
+            cboSocio.Name = "cboSocio";
+            cboSocio.Size = new Size(76, 19);
+            cboSocio.TabIndex = 11;
+            cboSocio.Text = "Soy socio";
+            cboSocio.UseVisualStyleBackColor = true;
+            // 
+            // gboTurno
+            // 
+            gboTurno.Controls.Add(rbtMañana);
+            gboTurno.Controls.Add(rbtTarde);
+            gboTurno.Location = new Point(6, 195);
+            gboTurno.Name = "gboTurno";
+            gboTurno.Size = new Size(196, 59);
+            gboTurno.TabIndex = 8;
+            gboTurno.TabStop = false;
+            gboTurno.Text = "Turno";
+            // 
+            // rbtMañana
+            // 
+            rbtMañana.AutoSize = true;
+            rbtMañana.Location = new Point(22, 22);
+            rbtMañana.Name = "rbtMañana";
+            rbtMañana.Size = new Size(68, 19);
+            rbtMañana.TabIndex = 9;
+            rbtMañana.TabStop = true;
+            rbtMañana.Text = "Mañana";
+            rbtMañana.UseVisualStyleBackColor = true;
+            // 
+            // rbtTarde
+            // 
+            rbtTarde.AutoSize = true;
+            rbtTarde.Location = new Point(117, 22);
+            rbtTarde.Name = "rbtTarde";
+            rbtTarde.Size = new Size(54, 19);
+            rbtTarde.TabIndex = 10;
+            rbtTarde.TabStop = true;
+            rbtTarde.Text = "Tarde";
+            rbtTarde.UseVisualStyleBackColor = true;
             // 
             // lblHoras
             // 
@@ -78,6 +156,7 @@
             tboHoras.Name = "tboHoras";
             tboHoras.Size = new Size(100, 23);
             tboHoras.TabIndex = 6;
+            tboHoras.TextChanged += tboHoras_TextChanged;
             // 
             // cboEmbargacion
             // 
@@ -88,6 +167,7 @@
             cboEmbargacion.Name = "cboEmbargacion";
             cboEmbargacion.Size = new Size(191, 23);
             cboEmbargacion.TabIndex = 5;
+            cboEmbargacion.SelectedIndexChanged += cboEmbargacion_SelectedIndexChanged;
             // 
             // lblEmbargacion
             // 
@@ -105,6 +185,7 @@
             tboDni.Name = "tboDni";
             tboDni.Size = new Size(147, 23);
             tboDni.TabIndex = 3;
+            tboDni.TextChanged += tboDni_TextChanged_1;
             // 
             // tboNombre
             // 
@@ -113,6 +194,7 @@
             tboNombre.Name = "tboNombre";
             tboNombre.Size = new Size(190, 23);
             tboNombre.TabIndex = 2;
+            tboNombre.TextChanged += tboNombre_TextChanged;
             // 
             // lblDni
             // 
@@ -132,55 +214,97 @@
             lblNombre.TabIndex = 0;
             lblNombre.Text = "Nombre:";
             // 
-            // gboTurno
+            // gboImporte
             // 
-            gboTurno.Controls.Add(rbtMañana);
-            gboTurno.Controls.Add(rbtTarde);
-            gboTurno.Location = new Point(6, 195);
-            gboTurno.Name = "gboTurno";
-            gboTurno.Size = new Size(233, 59);
-            gboTurno.TabIndex = 8;
-            gboTurno.TabStop = false;
-            gboTurno.Text = "Turno";
+            gboImporte.Controls.Add(lblTotal2);
+            gboImporte.Controls.Add(lblDescuento2);
+            gboImporte.Controls.Add(lblSubtotal2);
+            gboImporte.Controls.Add(lblTotal);
+            gboImporte.Controls.Add(lblDescuento);
+            gboImporte.Controls.Add(lblSubtotal);
+            gboImporte.Location = new Point(12, 374);
+            gboImporte.Name = "gboImporte";
+            gboImporte.Size = new Size(338, 147);
+            gboImporte.TabIndex = 1;
+            gboImporte.TabStop = false;
+            gboImporte.Text = "Importe";
             // 
-            // rbtMañana
+            // lblTotal2
             // 
-            rbtMañana.AutoSize = true;
-            rbtMañana.Location = new Point(10, 22);
-            rbtMañana.Name = "rbtMañana";
-            rbtMañana.Size = new Size(68, 19);
-            rbtMañana.TabIndex = 9;
-            rbtMañana.TabStop = true;
-            rbtMañana.Text = "Mañana";
-            rbtMañana.UseVisualStyleBackColor = true;
+            lblTotal2.AutoSize = true;
+            lblTotal2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotal2.Location = new Point(123, 107);
+            lblTotal2.Name = "lblTotal2";
+            lblTotal2.Size = new Size(48, 15);
+            lblTotal2.TabIndex = 5;
+            lblTotal2.Text = "$ 0 , 00";
             // 
-            // rbtTarde
+            // lblDescuento2
             // 
-            rbtTarde.AutoSize = true;
-            rbtTarde.Location = new Point(122, 22);
-            rbtTarde.Name = "rbtTarde";
-            rbtTarde.Size = new Size(54, 19);
-            rbtTarde.TabIndex = 10;
-            rbtTarde.TabStop = true;
-            rbtTarde.Text = "Tarde";
-            rbtTarde.UseVisualStyleBackColor = true;
+            lblDescuento2.AutoSize = true;
+            lblDescuento2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDescuento2.Location = new Point(123, 72);
+            lblDescuento2.Name = "lblDescuento2";
+            lblDescuento2.Size = new Size(27, 15);
+            lblDescuento2.TabIndex = 4;
+            lblDescuento2.Text = "% 0";
+            // 
+            // lblSubtotal2
+            // 
+            lblSubtotal2.AutoSize = true;
+            lblSubtotal2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSubtotal2.Location = new Point(123, 34);
+            lblSubtotal2.Name = "lblSubtotal2";
+            lblSubtotal2.Size = new Size(47, 15);
+            lblSubtotal2.TabIndex = 3;
+            lblSubtotal2.Text = "$ 0 , 00";
+            // 
+            // lblTotal
+            // 
+            lblTotal.AutoSize = true;
+            lblTotal.Location = new Point(16, 107);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(36, 15);
+            lblTotal.TabIndex = 2;
+            lblTotal.Text = "Total:";
+            // 
+            // lblDescuento
+            // 
+            lblDescuento.AutoSize = true;
+            lblDescuento.Location = new Point(16, 72);
+            lblDescuento.Name = "lblDescuento";
+            lblDescuento.Size = new Size(66, 15);
+            lblDescuento.TabIndex = 1;
+            lblDescuento.Text = "Descuento:";
+            // 
+            // lblSubtotal
+            // 
+            lblSubtotal.AutoSize = true;
+            lblSubtotal.Location = new Point(16, 34);
+            lblSubtotal.Name = "lblSubtotal";
+            lblSubtotal.Size = new Size(54, 15);
+            lblSubtotal.TabIndex = 0;
+            lblSubtotal.Text = "Subtotal:";
             // 
             // frmAlquileres
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(365, 371);
+            ClientSize = new Size(365, 533);
+            Controls.Add(gboImporte);
             Controls.Add(gboDatosCliente);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmAlquileres";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmAlquileres";
+            Text = "Náutica Los Molinos ";
             Load += frmAlquileres_Load;
             gboDatosCliente.ResumeLayout(false);
             gboDatosCliente.PerformLayout();
             gboTurno.ResumeLayout(false);
             gboTurno.PerformLayout();
+            gboImporte.ResumeLayout(false);
+            gboImporte.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -198,5 +322,15 @@
         private GroupBox gboTurno;
         private RadioButton rbtMañana;
         private RadioButton rbtTarde;
+        private CheckBox cboSocio;
+        private Button btnLimpiar;
+        private Button btnCalcular;
+        private GroupBox gboImporte;
+        private Label lblTotal;
+        private Label lblDescuento;
+        private Label lblSubtotal;
+        private Label lblTotal2;
+        private Label lblDescuento2;
+        private Label lblSubtotal2;
     }
 }
